@@ -33,7 +33,7 @@ if ARUCO_DICT.get(args["type"], None) is None:
 	print(f"ArUCo tag type '{args['type']}' is not supported")
 	sys.exit(0)
 
-arucoDict = cv2.aruco.Dictionary_get(ARUCO_DICT[args["type"]])
+arucoDict = cv2.aruco.getPredefinedDictionary(ARUCO_DICT[args["type"]])
 arucoParams = cv2.aruco.DetectorParameters_create()
 
 while True:
@@ -56,7 +56,7 @@ while True:
 
 	key = cv2.waitKey(1) & 0xFF
 	if key == ord("q"):
-	    break
+		break
 
 cv2.destroyAllWindows()
 video.release()

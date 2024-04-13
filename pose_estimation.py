@@ -24,7 +24,7 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
     '''
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    cv2.aruco_dict = cv2.aruco.Dictionary_get(aruco_dict_type)
+    cv2.aruco_dict = cv2.aruco.getPredefinedDictionary(aruco_dict_type)
     parameters = cv2.aruco.DetectorParameters_create()
 
 
@@ -36,8 +36,7 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
     if len(corners) > 0:
         for i in range(0, len(ids)):
             # Estimate pose of each marker and return the values rvec and tvec---(different from those of camera coefficients)
-            rvec, tvec, markerPoints = cv2.aruco.estimatePoseSingleMarkers(corners[i], 0.02, matrix_coefficients,
-                                                                       distortion_coefficients)
+            rvec, tvec, markerPoints = cv2.aruco.estimatePoseSingleMarkers(corners[i], 0.02, matrix_coefficients,distortion_coefficients)
             # Draw a square around the markers
             cv2.aruco.drawDetectedMarkers(frame, corners) 
 
